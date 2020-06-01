@@ -1,0 +1,85 @@
+﻿@model CompetencyAssessment.Models.UserDetails
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RegisterUser</title>
+</head>
+<body>
+    @using (Html.BeginForm("SubmitUserDetails", "RegisterUser"))
+    {
+        <div>
+
+            <table>
+                <tr>
+                    <td>
+                        <b>User Id :</b>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.UserId)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Employee Id :</b>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.EmployeeId)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Full Name :</b>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.FullName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Role :</b>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.RoleId, ViewData["RoleList"] as List<SelectListItem>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Location :</b>
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(x => x.LocationId, ViewData["LocationList"] as List<SelectListItem>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Email Id :</b>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.EmailId)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Mobile Number :</b>
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(x => x.MobileNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Submit" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        }
+        </body>
+</html>
