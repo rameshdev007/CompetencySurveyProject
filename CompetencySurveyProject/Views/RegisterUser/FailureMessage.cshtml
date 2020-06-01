@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FailureMessage</title>
+</head>
+<body>
+    <div>
+        <h1>Failed to add the record..!!!</h1>
+        <h2>Go back to the previous page.</h2>
+
+        @if (Request.UrlReferrer != null)
+        {
+            <td>
+                <input type="submit" value="Back" onclick="history.go(-1)" />
+            </td>
+        }
+    </div>
+</body>
+</html>
