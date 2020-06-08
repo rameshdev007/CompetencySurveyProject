@@ -37,7 +37,7 @@ namespace CompetencySurveyProject.Infrastucture.Repository
             return msg;
         }
 
-        public string UpdateUserPassword(string OTP, string Password)
+        public string UpdateUserPasswordWithOTP(string OTP, string Password)
         {
             string msg;
             SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["CompetencyAssessmentDB"]);
@@ -49,6 +49,33 @@ namespace CompetencySurveyProject.Infrastucture.Repository
             {
                 command.Parameters.AddWithValue("@OTP", int.Parse(OTP));
                 command.Parameters.AddWithValue("@Password", Password);
+
+                connection.Open();
+                int num = command.ExecuteNonQuery();
+                command.Dispose();
+                connection.Close();
+                msg = (num > 0) ? "success" : "failed";
+            }
+            catch (Exception ex)
+            {
+                msg = "Exception while saving the record: " + ex.Message;
+            }
+            return msg;
+        }
+
+        public string UpdateUserPassword(string userId, string currentPassword, string newPassword)
+        {
+            string msg;
+            SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["CompetencyAssessmentDB"]);
+            SqlCommand command = new SqlCommand("[dbo].[UpdateUserPassword]", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
+            try
+            {
+                command.Parameters.AddWithValue("@UserId", userId);
+                command.Parameters.AddWithValue("@CurrentPassword", currentPassword);
+                command.Parameters.AddWithValue("@NewPassword", newPassword);
 
                 connection.Open();
                 int num = command.ExecuteNonQuery();
