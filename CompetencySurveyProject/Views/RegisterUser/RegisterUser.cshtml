@@ -1,7 +1,11 @@
-﻿@model CompetencyAssessment.Models.UserDetails
+﻿@model CompetencySurveyProject.Models.UserDetails
 
 @{
     Layout = null;
+    if(Session["userId"] == null)
+    {
+        Response.Redirect("~/Login/Login");
+    }
 }
 
 <!DOCTYPE html>
@@ -12,7 +16,7 @@
     <title>RegisterUser</title>
 </head>
 <body>
-    <h1>User Registration Page</h1>
+    <h1>Welcome to User Registration Page</h1>
         @using (Html.BeginForm("SubmitUserDetails", "RegisterUser")) { <div>
 
             <table>

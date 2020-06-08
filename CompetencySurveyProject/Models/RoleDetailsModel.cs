@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace CompetencyAssessment.Models
+namespace CompetencySurveyProject.Models
 {
     public class RoleDetailsModel
     {

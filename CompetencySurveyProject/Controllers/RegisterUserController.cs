@@ -1,6 +1,7 @@
-﻿using CompetencyAssessment.Models;
+﻿using CompetencySurveyProject.Models;
 using CompetencySurveyProject.Infrastucture.Abstract;
 using CompetencySurveyProject.Infrastucture.Repository;
+using CompetencySurveyProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,12 @@ namespace CompetencySurveyProject.Controllers
 {
     public class RegisterUserController : Controller
     {
-        readonly IUserRegistration dbObj = new UserRegistration();
+        readonly IUserRegistration dbObj = new UserRegistrationRepo();
 
         [HttpGet]
         public ActionResult RegisterUser()
         {
-            ILocationDetails locationDetails = new LocationDetails();
+            ILocationDetails locationDetails = new LocationDetailsRepo();
             List<SelectListItem> locationList = new List<SelectListItem>();
             List<LocationDetailsModel> locationFromDB = locationDetails.GetLocationsList();
             foreach(var l in locationFromDB)
@@ -25,7 +26,7 @@ namespace CompetencySurveyProject.Controllers
             }
             ViewData["LocationList"] = locationList;
 
-            IRoleDetails roleDetails = new RoleDetails();
+            IRoleDetails roleDetails = new RoleDetailsRepo();
             List<SelectListItem> roleList = new List<SelectListItem>();
             List<RoleDetailsModel> rolesFromDB = roleDetails.GetRolesList();
             foreach (var r in rolesFromDB)
@@ -46,7 +47,7 @@ namespace CompetencySurveyProject.Controllers
 
             if (msg.Equals("success"))
             {
-                NotifyUser.SendEmail(userDetails.FullName, userDetails.EmailId, userDetails.UserId, userDetails.Password);
+                NotifyUser.SendUserActicationEmail(userDetails.FullName, userDetails.EmailId, userDetails.UserId, userDetails.Password);
                 return RedirectToAction("RegisterUser");
             }
             else

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace CompetencySurveyProject.Infrastucture.Abstract
 {
-    interface IUserRegistration
+    interface IResetPasswordRepo
     {
-        string RegisterUser(UserDetails userDetails);
+        string UpdateuserOTP(string UserId, int OTP);
+        string UpdateUserPassword(string OTP, string Password);
     }
 }

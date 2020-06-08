@@ -1,45 +1,49 @@
 ﻿using CompetencySurveyProject.Infrastucture.Abstract;
+using CompetencySurveyProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using CompetencyAssessment.Models;
+using System.Linq;
+using System.Web;
 
 namespace CompetencySurveyProject.Infrastucture.Repository
 {
-    public class LocationDetails : ILocationDetails
+    public class LoginRepo : ILoginRepo
     {
-
-        public List<LocationDetailsModel> GetLocationsList()
+        public LoginModel ValidateUserLogin(string userId)
         {
-            List<LocationDetailsModel> list = new List<LocationDetailsModel>();
+            LoginModel userRecord = new LoginModel();
             SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["CompetencyAssessmentDB"]);
-            SqlCommand command = new SqlCommand("GetLocationList", connection)
+            SqlCommand command = new SqlCommand("GetUserRecord", connection)
             {
                 CommandType = CommandType.StoredProcedure
             };
+
             SqlDataReader reader;
+            command.Parameters.AddWithValue("@UserId", userId);
             try
             {
                 connection.Open();
+                
                 reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    LocationDetailsModel locationRecord = new LocationDetailsModel();
-                    locationRecord.LocationId = (int)reader.GetValue(0);
-                    locationRecord.Location = reader.GetValue(1).ToString();
-                    list.Add(locationRecord);
+                    userRecord.UserId = reader.GetValue(1).ToString();
+                    userRecord.Password = reader.GetValue(8).ToString();
+                    userRecord.EmailId = reader.GetValue(6).ToString();
+                    userRecord.RoleId = (int)reader.GetValue(4);
                 }
                 reader.Close();
                 command.Dispose();
                 connection.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Could not get the location details");
+                Console.WriteLine("Could not get the user record");
             }
-            return list;
+            return userRecord;
         }
     }
 }
