@@ -34,13 +34,19 @@ namespace CompetencySurveyProject.Controllers
             if (IsAdminUser(userRecord))
             {
                 Session["userID"] = loginModel.UserId;
+                Session["userFullName"] = userRecord.UserFullName;
                 return RedirectToAction("RegisterUser", "RegisterUser");
             }
-            else
-            {
-                Session["userID"] = loginModel.UserId;
-                return RedirectToAction("Index", "UserDashBoard");
-            }
+
+            Session["userID"] = loginModel.UserId;
+            Session["userFullName"] = userRecord.UserFullName;
+            return RedirectToAction("Index", "UserDashBoard");
+        }
+
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            return RedirectToAction("Login", "Login");
         }
 
         private bool ValidatePassword(LoginModel userRecord, string passWord)

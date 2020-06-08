@@ -16,8 +16,22 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <div> 
+    <div>
         <h1>User Dashboard</h1>
     </div>
+    <div>
+        <br/>
+        <h4>
+            Welcome @Session["userFullName"].ToString(),
+        </h4>
+    </div>
+    <br />
+    <br />
+
+<div>
+    <a href="@Url.Action("ChangePassword", "ResetPassword")">Change Password</a>
+</div>
+<div>
+    <a href="@Url.Action("LogOut", "Login")">Log Out</a></div>
 </body>
 </html>

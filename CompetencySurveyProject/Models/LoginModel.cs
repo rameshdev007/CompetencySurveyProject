@@ -14,5 +14,6 @@ namespace CompetencySurveyProject.Models
         public string Password { get; set; }
         public string LoginErrorMessage { get; set; }
         public int RoleId { get; set; }
+        public string UserFullName { get; set; }
     }
 }

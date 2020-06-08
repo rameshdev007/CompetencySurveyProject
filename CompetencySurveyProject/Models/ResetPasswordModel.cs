@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace CompetencySurveyProject.Models
 {
@@ -11,15 +8,23 @@ namespace CompetencySurveyProject.Models
         public string UserId;
 
         [Required(ErrorMessage ="Please enter the OTP you received in Email", AllowEmptyStrings = false)]
+        [DisplayName("OTP")]
         public string ResetCode { get; set; }
 
-        [DataType(DataType.Password)]
+        [DisplayName("New Password")]
         [Required(ErrorMessage = "Please enter new password", AllowEmptyStrings = false)]
+        [DataType(DataType.Password)]
         public string NewPassword { get; set; }
 
-        [Required(ErrorMessage = "Please enter new password", AllowEmptyStrings = false)]
-        [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Please enter confirm password", AllowEmptyStrings = false)]
+        [DisplayName("Confirm Password")]
         [Compare("NewPassword", ErrorMessage ="Confirm password should match New Password")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Please enter current password", AllowEmptyStrings = false)]
+        [DisplayName("Current Password")]
+        [DataType(DataType.Password)]
+        public string CurrentPassword { get; set; }
     }
 }

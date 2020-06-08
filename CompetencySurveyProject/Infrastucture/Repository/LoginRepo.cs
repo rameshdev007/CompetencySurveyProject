@@ -34,6 +34,7 @@ namespace CompetencySurveyProject.Infrastucture.Repository
                     userRecord.Password = reader.GetValue(8).ToString();
                     userRecord.EmailId = reader.GetValue(6).ToString();
                     userRecord.RoleId = (int)reader.GetValue(4);
+                    userRecord.UserFullName = reader.GetValue(3).ToString();
                 }
                 reader.Close();
                 command.Dispose();

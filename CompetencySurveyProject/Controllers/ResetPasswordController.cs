@@ -73,7 +73,7 @@ namespace CompetencySurveyProject.Controllers
             IResetPasswordRepo resetPasswordRepo = new ResetPasswordRepo();
 
             // Store the Password in DB
-            string dbmsg = resetPasswordRepo.UpdateUserPassword(resetPassword.ResetCode, resetPassword.NewPassword);
+            string dbmsg = resetPasswordRepo.UpdateUserPasswordWithOTP(resetPassword.ResetCode, resetPassword.NewPassword);
 
             // Send OTP in mail
             if (dbmsg == "success")
@@ -82,7 +82,32 @@ namespace CompetencySurveyProject.Controllers
             }
             else
             {
-                ViewBag.Message = "Password reset successful";
+                ViewBag.Message = "Password reset un-successful";
+                return View();
+            }
+        }
+
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(ResetPasswordModel resetPasswordModel)
+        {
+            IResetPasswordRepo resetPasswordRepo = new ResetPasswordRepo();
+
+            // Update the Password in DB
+            string userId = (string)Session["userId"];
+            string dbmsg = resetPasswordRepo.UpdateUserPassword(userId, resetPasswordModel.CurrentPassword,resetPasswordModel.NewPassword);
+            
+            if (dbmsg == "success")
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
+                ViewBag.Message = "Password reset un-successful";
                 return View();
             }
         }

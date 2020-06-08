@@ -14,18 +14,32 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>RegisterUser</title>
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <h1>Welcome to User Registration Page</h1>
-        @using (Html.BeginForm("SubmitUserDetails", "RegisterUser")) { <div>
+        @using (Html.BeginForm("SubmitUserDetails", "RegisterUser")) { 
+            <div>
 
-            <table>
+                <table>
+                    <div>
+                        <br/>
+                        <h4>
+                            Welcome @Session["userFullName"].ToString(),
+                        </h4>
+                    </div>
+
                 <tr>
                     <td>
                         <b>User Id :</b>
                     </td>
                     <td>
                         @Html.TextBoxFor(x => x.UserId)
+                        @Html.ValidationMessageFor(x => x.UserId)
                     </td>
                 </tr>
                 <tr>
@@ -34,6 +48,7 @@
                     </td>
                     <td>
                         @Html.TextBoxFor(x => x.EmployeeId)
+                        @Html.ValidationMessageFor(x => x.EmployeeId)
                     </td>
                 </tr>
                 <tr>
@@ -42,6 +57,7 @@
                     </td>
                     <td>
                         @Html.TextBoxFor(x => x.FullName)
+                        @Html.ValidationMessageFor(x => x.FullName)
                     </td>
                 </tr>
                 <tr>
@@ -66,6 +82,7 @@
                     </td>
                     <td>
                         @Html.TextBoxFor(x => x.EmailId)
+                        @Html.ValidationMessageFor(x => x.EmailId)
                     </td>
                 </tr>
                 <tr>
@@ -74,6 +91,7 @@
                     </td>
                     <td>
                         @Html.TextBoxFor(x => x.MobileNumber)
+                        @Html.ValidationMessageFor(x => x.MobileNumber)
                     </td>
                 </tr>
                 <tr>
@@ -82,7 +100,18 @@
                     </td>
                 </tr>
             </table>
-        </div>
+            <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+            </div>
         }
+<br/>
+<br/>
+<div>
+    <a href="@Url.Action("ChangePassword", "ResetPassword")">Change Password</a>
+</div>
+<div>
+    <a href="@Url.Action("LogOut", "Login")">Log Out</a>
+</div>
 </body>
 </html>
