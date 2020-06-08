@@ -1,7 +1,7 @@
 using CompetencySurveyProject.Infrastucture.Repository;
 using System;
 
-namespace CompetencyAssessment.Models
+namespace CompetencySurveyProject.Models
 {
     public class UserDetails
     {

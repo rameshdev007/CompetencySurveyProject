@@ -16,7 +16,8 @@ namespace CompetencySurveyProject
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "RegisterUser", action = "RegisterUser", id = UrlParameter.Optional }
+                //defaults: new { controller = "RegisterUser", action = "RegisterUser", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,20 +128,29 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ResetPasswordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegisterUserController.cs" />
+    <Compile Include="Controllers\UserDashBoardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastucture\Abstract\ILocationDetails.cs" />
+    <Compile Include="Infrastucture\Abstract\ILoginRepo.cs" />
     <Compile Include="Infrastucture\Abstract\INotifyUser.cs" />
+    <Compile Include="Infrastucture\Abstract\IResetPasswordRepo.cs" />
     <Compile Include="Infrastucture\Abstract\IRoleDetails.cs" />
     <Compile Include="Infrastucture\Abstract\IUserRegistration.cs" />
-    <Compile Include="Infrastucture\Repository\LocationDetails.cs" />
+    <Compile Include="Infrastucture\Repository\LocationDetailsRepo.cs" />
     <Compile Include="Infrastucture\Repository\NotifyUser.cs" />
-    <Compile Include="Infrastucture\Repository\RoleDetails.cs" />
-    <Compile Include="Infrastucture\Repository\UserRegistration.cs" />
+    <Compile Include="Infrastucture\Repository\ResetPasswordRepo.cs" />
+    <Compile Include="Infrastucture\Repository\RoleDetailsRepo.cs" />
+    <Compile Include="Infrastucture\Repository\UserRegistrationRepo.cs" />
+    <Compile Include="Infrastucture\Repository\LoginRepo.cs" />
     <Compile Include="Models\LocationDetailsModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Models\RoleDetailsModel.cs" />
     <Compile Include="Models\UserDetailsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,6 +193,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\RegisterUser\RegisterUser.cshtml" />
     <Content Include="Views\RegisterUser\FailureMessage.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\UserDashBoard\Index.cshtml" />
+    <Content Include="Views\ResetPassword\ForgotPassword.cshtml" />
+    <Content Include="Views\ResetPassword\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -192,6 +213,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

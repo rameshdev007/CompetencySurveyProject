@@ -1,5 +1,5 @@
-﻿using CompetencyAssessment.Models;
-using CompetencySurveyProject.Infrastucture.Abstract;
+﻿using CompetencySurveyProject.Infrastucture.Abstract;
+using CompetencySurveyProject.Models;
 using System;
 using System.Configuration;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace CompetencySurveyProject.Infrastucture.Repository
 {
-    public class UserRegistration : IUserRegistration
+    public class UserRegistrationRepo : IUserRegistration
     {
         private string msg;
 

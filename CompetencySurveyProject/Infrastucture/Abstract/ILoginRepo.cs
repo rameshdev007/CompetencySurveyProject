@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace CompetencySurveyProject.Infrastucture.Abstract
 {
-    interface IUserRegistration
+    public interface ILoginRepo
     {
-        string RegisterUser(UserDetails userDetails);
+        LoginModel ValidateUserLogin(string userId);
     }
 }

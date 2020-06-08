@@ -1,4 +1,4 @@
-﻿using CompetencyAssessment.Models;
+﻿using CompetencySurveyProject.Models;
 using CompetencySurveyProject.Infrastucture.Abstract;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace CompetencySurveyProject.Infrastucture.Repository
 {
-    public class RoleDetails : IRoleDetails
+    public class RoleDetailsRepo : IRoleDetails
     {
         public List<RoleDetailsModel> GetRolesList()
         {

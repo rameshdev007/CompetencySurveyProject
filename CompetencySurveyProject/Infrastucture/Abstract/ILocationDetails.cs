@@ -1,4 +1,4 @@
-﻿using CompetencyAssessment.Models;
+﻿using CompetencySurveyProject.Models;
 using System.Collections.Generic;
 
 namespace CompetencySurveyProject.Infrastucture.Abstract
